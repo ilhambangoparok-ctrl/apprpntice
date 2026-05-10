@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ระบบติดตามข้อมูลฝึกงานนักศึกษา</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Kanit',sans-serif;
+}
+
+body{
+    background:#f4f7fb;
+    color:#333;
+}
+
+/* HEADER */
+
+header{
+    background:linear-gradient(135deg,#0f172a,#1e3a8a);
+    color:white;
+    padding:40px 8%;
+}
+
+header h1{
+    font-size:38px;
+    margin-bottom:10px;
+}
+
+header p{
+    opacity:0.9;
+    font-size:16px;
+}
+
+/* DASHBOARD */
+
+.dashboard{
+    width:90%;
+    margin:auto;
+    margin-top:-30px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+}
+
+.card{
+    background:white;
+    padding:25px;
+    border-radius:18px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.08);
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+.card h2{
+    font-size:34px;
+    color:#1e3a8a;
+}
+
+.card p{
+    color:#666;
+    margin-top:8px;
+}
+
+/* TABLE SECTION */
+
+.container{
+    width:90%;
+    margin:40px auto;
+}
+
+.section-title{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.section-title h2{
+    font-size:28px;
+}
+
+.search-box input{
+    padding:12px 15px;
+    border:none;
+    border-radius:12px;
+    width:250px;
+    outline:none;
+    box-shadow:0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* TABLE */
+
+.table-container{
+    overflow-x:auto;
+    background:white;
+    border-radius:18px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.08);
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+thead{
+    background:#1e3a8a;
+    color:white;
+}
+
+th,td{
+    padding:18px;
+    text-align:left;
+}
+
+tbody tr{
+    border-bottom:1px solid #eee;
+    transition:0.2s;
+}
+
+tbody tr:hover{
+    background:#f5f8ff;
+}
+
+.status{
+    padding:8px 14px;
+    border-radius:20px;
+    font-size:14px;
+    font-weight:500;
+}
+
+.good{
+    background:#dcfce7;
+    color:#166534;
+}
+
+.normal{
+    background:#fef9c3;
+    color:#854d0e;
+}
+
+/* FOOTER */
+
+footer{
+    text-align:center;
+    padding:30px;
+    background:#0f172a;
+    color:white;
+    margin-top:50px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+    header h1{
+        font-size:28px;
+    }
+
+    .section-title{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:15px;
+    }
+
+    .search-box input{
+        width:100%;
+    }
+}
+
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+
+<header>
+    <h1>ระบบติดตามข้อมูลฝึกงานนักศึกษา</h1>
+    <p>วิทยาลัยชุมชน | Internship Management System</p>
+</header>
+
+<!-- DASHBOARD -->
+
+<section class="dashboard">
+
+    <div class="card">
+        <h2>120</h2>
+        <p>นักศึกษาฝึกงานทั้งหมด</p>
+    </div>
+
+    <div class="card">
+        <h2>15</h2>
+        <p>สถานประกอบการ</p>
+    </div>
+
+    <div class="card">
+        <h2>95%</h2>
+        <p>ผ่านการประเมิน</p>
+    </div>
+
+    <div class="card">
+        <h2>4.8</h2>
+        <p>คะแนนความพึงพอใจ</p>
+    </div>
+
+</section>
+
+<!-- TABLE -->
+
+<section class="container">
+
+    <div class="section-title">
+        <h2>ข้อมูลนักศึกษาฝึกงาน</h2>
+
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="ค้นหาชื่อนักศึกษา...">
+        </div>
+    </div>
+
+    <div class="table-container">
+
+        <table id="studentTable">
+
+            <thead>
+                <tr>
+                    <th>รหัส</th>
+                    <th>ชื่อ-นามสกุล</th>
+                    <th>สถานที่ฝึกงาน</th>
+                    <th>ตำแหน่ง</th>
+                    <th>จังหวัด</th>
+                    <th>คะแนน</th>
+                    <th>สถานะ</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <tr>
+                    <td>ST001</td>
+                    <td>นายอีลฮำ บาโงปาโระ</td>
+                    <td>เทศบาลตำบลลำใหม่</td>
+                    <td>ผู้ช่วยงาน IT</td>
+                    <td>ยะลา</td>
+                    <td>95</td>
+                    <td><span class="status good">ดีเยี่ยม</span></td>
+                </tr>
+
+                <tr>
+                    <td>ST002</td>
+                    <td>นายมะหะมุ โตะเฮง</td>
+                    <td>โรงพยาบาลยะลา</td>
+                    <td>เจ้าหน้าที่ธุรการ</td>
+                    <td>ยะลา</td>
+                    <td>90</td>
+                    <td><span class="status good">ดีเยี่ยม</span></td>
+                </tr>
+
+                <tr>
+                    <td>ST003</td>
+                    <td>นายอามีน สาและ</td>
+                    <td>Yala Media</td>
+                    <td>กราฟิกดีไซน์</td>
+                    <td>ปัตตานี</td>
+                    <td>88</td>
+                    <td><span class="status normal">ดี</span></td>
+                </tr>
+
+                <tr>
+                    <td>ST004</td>
+                    <td>นายกองเงิน ทองคำ</td>
+                    <td>ร้านบ้านชาชัก</td>
+                    <td>การตลาดออนไลน์</td>
+                    <td>สงขลา</td>
+                    <td>92</td>
+                    <td><span class="status good">ดีเยี่ยม</span></td>
+                </tr>
+
+                <tr>
+                    <td>ST005</td>
+                    <td>นายสันติ คงถาวร</td>
+                    <td>สำนักงานเทศบาล</td>
+                    <td>ผู้ช่วยบัญชี</td>
+                    <td>นราธิวาส</td>
+                    <td>89</td>
+                    <td><span class="status normal">ดี</span></td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+    © 2026 Internship Management System | วิทยาลัยชุมชน
+</footer>
+
+<!-- SEARCH SCRIPT -->
+
+<script>
+
+const searchInput = document.getElementById("searchInput");
+const table = document.getElementById("studentTable");
+const rows = table.getElementsByTagName("tr");
+
+searchInput.addEventListener("keyup", function(){
+
+    const filter = searchInput.value.toLowerCase();
+
+    for(let i = 1; i < rows.length; i++){
+
+        const name = rows[i].getElementsByTagName("td")[1];
+
+        if(name){
+
+            const textValue = name.textContent || name.innerText;
+
+            rows[i].style.display = textValue.toLowerCase().includes(filter)
+            ? ""
+            : "none";
+        }
+    }
+});
+
+</script>
+
+</body>
+</html>
